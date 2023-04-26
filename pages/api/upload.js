@@ -10,6 +10,7 @@ export default async function handler(req, res) {
   const { fields, files } = await new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
       if (err) reject(err);
+      console.log(files);
       resolve({ fields, files });
     });
   });
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
   const links = [];
 
   for (const file of files.file) {
-    const ext = await file.orginalFilename.split('.').pop();
+    const ext = file.originalFilename.split('.').pop();
     const newFilename = Date.now() + '.' + ext;
 
     await client.send(

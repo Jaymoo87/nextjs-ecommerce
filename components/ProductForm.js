@@ -27,9 +27,7 @@ const ProductForm = ({
     if (_id) {
       await axios.put('/api/products', { ...data, _id });
     } else {
-      await axios.post('/api/products', data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      await axios.post('/api/products', data);
     }
     setGoToProducts(true);
 
