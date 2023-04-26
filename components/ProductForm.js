@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// import Layout from './Layout';
+import { ReactSortable } from 'react-sortablejs';
 import { useRouter } from 'next/router';
 import Spinner from './Spinner';
 
@@ -53,21 +53,9 @@ const ProductForm = ({
     }
   }
 
-  // const uploadImage = async (e) => {
-  //   const files = e.target?.files;
-  //   if (files?.length > 0) {
-  //     const data = new FormData();
-
-  //     for (const file of files) {
-  //       data.append('file', file);
-  //     }
-  //     const res = await fetch('/api/upload', {
-  //       method: 'POST',
-  //       body: data,
-  //     });
-  //     console.log(res);
-  //   }
-  // };
+  const updateImagesOrder = () => {
+    console.log(arguments);
+  };
 
   return (
     <form onSubmit={saveProduct}>
@@ -75,12 +63,14 @@ const ProductForm = ({
       <input type="text" placeholder="product name" value={title} onChange={(e) => setTitle(e.target.value)} />
       <label>Photos</label>
       <div className="flex flex-wrap gap-2 mb-2 text-sm ">
-        {images?.length &&
-          images.map((link) => (
-            <div className="inline-block h-24" key={link}>
-              <img src={link} alt="userPhoto" />
-            </div>
-          ))}
+        <ReactSortable className="flex flex-wrap gap-1" list={images} setList={updateImagesOrder}>
+          {images?.length &&
+            images.map((link) => (
+              <div className="inline-block h-24" key={link}>
+                <img src={link} alt="userPhoto" />
+              </div>
+            ))}
+        </ReactSortable>
         {isUploading && (
           <div className="flex items-center h-24 p-1 text-blue-900 rounded-lg">
             <Spinner />
