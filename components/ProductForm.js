@@ -53,8 +53,8 @@ const ProductForm = ({
     }
   }
 
-  const updateImagesOrder = () => {
-    console.log(arguments);
+  const updateImagesOrder = (images) => {
+    setImages(images);
   };
 
   return (
