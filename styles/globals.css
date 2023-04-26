@@ -29,3 +29,31 @@ label {
 .btn-primary {
   @apply px-4 py-1 text-white bg-blue-900 rounded-md;
 }
+.btn-red {
+  @apply text-white bg-red-950;
+}
+
+.btn-default {
+  @apply bg-gray-200;
+}
+
+.btn-default,
+.btn-red {
+  @apply px-4 py-1 rounded-md;
+}
+
+table.basic {
+  @apply w-full;
+}
+
+table.basic thead tr td {
+  @apply bg-blue-100;
+}
+
+table.basic tr td {
+  @apply p-1 border border-blue-200;
+}
+
+table.basic a {
+  @apply inline-flex px-2 py-1 mr-2 text-sm text-white bg-blue-900 rounded-md;
+}
