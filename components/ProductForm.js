@@ -4,18 +4,26 @@ import axios from 'axios';
 // import Layout from './Layout';
 import { useRouter } from 'next/router';
 
-const ProductForm = ({ _id, title: existingTitle, description: existingDescription, price: existingPrice, images }) => {
+const ProductForm = ({
+  _id,
+  title: existingTitle,
+  description: existingDescription,
+  price: existingPrice,
+  images: existingImage,
+}) => {
   const router = useRouter();
 
   const [title, setTitle] = useState(existingTitle || '');
   const [description, setDescription] = useState(existingDescription || '');
   const [price, setPrice] = useState(existingPrice || '');
+  const [isUploading, setIsUploading] = useState(false);
+  const [images, setImages] = useState(existingImage || []);
 
   const [goToProducts, setGoToProducts] = useState(false);
 
   const saveProduct = async (e) => {
     e.preventDefault();
-    const data = { title, description, price };
+    const data = { title, description, price, images };
     if (_id) {
       await axios.put('/api/products', { ...data, _id });
     } else {
@@ -30,18 +38,37 @@ const ProductForm = ({ _id, title: existingTitle, description: existingDescripti
     }
   };
 
-  const uploadImage = async (e) => {
+  async function uploadImage(e) {
     const files = e.target?.files;
     if (files?.length > 0) {
+      setIsUploading(true);
       const data = new FormData();
-
       for (const file of files) {
         data.append('file', file);
       }
       const res = await axios.post('/api/upload', data);
-      console.log(res.data);
+      setImages((oldImages) => {
+        return [...oldImages, ...res.data.links];
+      });
+      setIsUploading(false);
     }
-  };
+  }
+
+  // const uploadImage = async (e) => {
+  //   const files = e.target?.files;
+  //   if (files?.length > 0) {
+  //     const data = new FormData();
+
+  //     for (const file of files) {
+  //       data.append('file', file);
+  //     }
+  //     const res = await fetch('/api/upload', {
+  //       method: 'POST',
+  //       body: data,
+  //     });
+  //     console.log(res);
+  //   }
+  // };
 
   return (
     <form onSubmit={saveProduct}>
@@ -64,8 +91,8 @@ const ProductForm = ({ _id, title: existingTitle, description: existingDescripti
               d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
             />
           </svg>
-          <div> Upload</div>
-          <input type="file" className="hidden cursor-pointer" onChange={uploadImage} />
+          <div className="cursor-pointer"> Upload</div>
+          <input type="file" className="hidden " onChange={uploadImage} />
         </label>
         {!images?.length && <div className="mb-2 text-xs">No Photo</div>}
       </div>

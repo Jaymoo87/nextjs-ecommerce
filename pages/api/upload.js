@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   const links = [];
 
   for (const file of files.file) {
-    const ext = file.orginalFilename.split('.').pop();
+    const ext = await file.orginalFilename.split('.').pop();
     const newFilename = Date.now() + '.' + ext;
 
     await client.send(
