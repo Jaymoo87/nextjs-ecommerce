@@ -21,9 +21,9 @@ const Products = () => {
       </Link>
       <table className="mt-2 basic">
         <thead>
-          <tr>
-            <td></td>
-            <td></td>
+          <tr className="text-center">
+            <td> Product Name</td>
+            <td>Options</td>
           </tr>
         </thead>
         <tbody>

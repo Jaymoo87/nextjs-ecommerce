@@ -3,13 +3,14 @@ import axios from 'axios';
 
 // import Layout from './Layout';
 import { useRouter } from 'next/router';
+import Spinner from './Spinner';
 
 const ProductForm = ({
   _id,
   title: existingTitle,
   description: existingDescription,
   price: existingPrice,
-  images: existingImage,
+  images: existingImages,
 }) => {
   const router = useRouter();
 
@@ -17,7 +18,7 @@ const ProductForm = ({
   const [description, setDescription] = useState(existingDescription || '');
   const [price, setPrice] = useState(existingPrice || '');
   const [isUploading, setIsUploading] = useState(false);
-  const [images, setImages] = useState(existingImage || []);
+  const [images, setImages] = useState(existingImages || []);
 
   const [goToProducts, setGoToProducts] = useState(false);
 
@@ -73,7 +74,18 @@ const ProductForm = ({
       <label>Product Name</label>
       <input type="text" placeholder="product name" value={title} onChange={(e) => setTitle(e.target.value)} />
       <label>Photos</label>
-      <div className="mb-2 text-sm ">
+      <div className="flex flex-wrap gap-2 mb-2 text-sm ">
+        {images?.length &&
+          images.map((link) => (
+            <div className="inline-block h-24" key={link}>
+              <img src={link} alt="userPhoto" />
+            </div>
+          ))}
+        {isUploading && (
+          <div className="flex items-center h-24 p-1 text-blue-900 rounded-lg">
+            <Spinner />
+          </div>
+        )}
         <label className="flex flex-col items-center justify-center w-24 h-24 text-gray-500 bg-gray-200 border border-blue-200 rounded-lg shadow-lg">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +104,6 @@ const ProductForm = ({
           <div className="cursor-pointer"> Upload</div>
           <input type="file" className="hidden " onChange={uploadImage} />
         </label>
-        {!images?.length && <div className="mb-2 text-xs">No Photo</div>}
       </div>
 
       <label>Description</label>
