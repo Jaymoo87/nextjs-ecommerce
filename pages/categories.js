@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-
-import Layout from '../components/Layout';
 import axios from 'axios';
 
-const Categories = () => {
+import { withSwal } from 'react-sweetalert2';
+
+import Layout from '../components/Layout';
+
+const Categories = ({ swal }) => {
   const [name, setName] = useState('');
   const [categories, setCategories] = useState([]);
   const [parentCategory, setParentCategory] = useState('');
@@ -39,6 +41,27 @@ const Categories = () => {
     setEditedCategory(category);
     setName(category.name);
     setParentCategory(category.parent?._id);
+  };
+
+  const deleteCategory = (category) => {
+    swal
+      .fire({
+        title: 'Delete?',
+        text: `Are you sure you want to delete this?`,
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Yes, Delete',
+        confirmButtonColor: '#d55',
+        reverseButtons: true,
+      })
+      .then(async (res) => {
+        if (res.isConfirmed) {
+          const { _id } = category;
+          await axios.delete(`/api/categories?_id=${_id}`);
+          fetchCategories();
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -82,7 +105,10 @@ const Categories = () => {
                     {' '}
                     Edit{' '}
                   </button>
-                  <button className="btn-primary"> Delete </button>
+                  <button onClick={() => deleteCategory(cat)} className="btn-primary">
+                    {' '}
+                    Delete{' '}
+                  </button>
                 </td>
               </tr>
             ))}
@@ -92,4 +118,6 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default withSwal(({ swal }, ref) => <Categories swal={swal} />);
+
+// export default Categories;
