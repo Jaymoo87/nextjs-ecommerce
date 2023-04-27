@@ -7,6 +7,7 @@ const Categories = () => {
   const [name, setName] = useState('');
   const [categories, setCategories] = useState([]);
   const [parentCategory, setParentCategory] = useState('');
+  const [editedCategory, setEditedCategory] = useState(null);
 
   useEffect(() => {
     fetchCategories();
@@ -17,17 +18,33 @@ const Categories = () => {
       setCategories(res.data);
     });
   };
+
   const saveCategory = async (e) => {
     e.preventDefault();
-    await axios.post('/api/categories', { name, parentCategory });
+    const data = { name, parentCategory };
+
+    if (editedCategory) {
+      data._id = editedCategory._id;
+      await axios.put('/api/categories', data);
+      setEditedCategory(null);
+    } else {
+      await axios.post('/api/categories', data);
+    }
     setName('');
+    setCategories('');
     fetchCategories();
+  };
+
+  const editCategory = (category) => {
+    setEditedCategory(category);
+    setName(category.name);
+    setParentCategory(category.parent?._id);
   };
 
   return (
     <Layout>
-      <h1>categories</h1>
-      <label>Category Name</label>
+      <h1>Categories</h1>
+      <label>{editedCategory ? `Edit Category ${editedCategory.name}` : 'Create New Category '}</label>
       <form onSubmit={saveCategory} className="flex gap-1">
         <input
           value={name}
@@ -51,6 +68,7 @@ const Categories = () => {
           <tr>
             <td>Category Name</td>
             <td>Parent Category</td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -59,6 +77,13 @@ const Categories = () => {
               <tr>
                 <td>{cat.name}</td>
                 <td>{cat?.parent?.name}</td>
+                <td>
+                  <button onClick={() => editCategory(cat)} className="mr-1 btn-primary">
+                    {' '}
+                    Edit{' '}
+                  </button>
+                  <button className="btn-primary"> Delete </button>
+                </td>
               </tr>
             ))}
         </tbody>
