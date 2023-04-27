@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { ReactSortable } from 'react-sortablejs';
@@ -11,20 +11,29 @@ const ProductForm = ({
   description: existingDescription,
   price: existingPrice,
   images: existingImages,
+  category: existingCategory,
 }) => {
   const router = useRouter();
 
   const [title, setTitle] = useState(existingTitle || '');
   const [description, setDescription] = useState(existingDescription || '');
+  const [category, setCategory] = useState(existingCategory || '');
   const [price, setPrice] = useState(existingPrice || '');
   const [isUploading, setIsUploading] = useState(false);
   const [images, setImages] = useState(existingImages || []);
+  const [categories, setCategories] = useState([]);
 
   const [goToProducts, setGoToProducts] = useState(false);
 
+  useEffect(() => {
+    axios.get('/api/categories').then((res) => {
+      setCategories(res.data);
+    });
+  }, [categories]);
+
   const saveProduct = async (e) => {
     e.preventDefault();
-    const data = { title, description, price, images };
+    const data = { title, description, price, images, category };
     if (_id) {
       await axios.put('/api/products', { ...data, _id });
     } else {
@@ -61,9 +70,18 @@ const ProductForm = ({
     <form onSubmit={saveProduct}>
       <label>Product Name</label>
       <input type="text" placeholder="product name" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <label>Category</label>
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="">No Category</option>
+        {categories.length > 0 && categories.map((cat) => <option value={cat._id}>{cat.name}</option>)}
+      </select>
       <label>Photos</label>
       <div className="flex flex-wrap gap-2 mb-2 text-sm ">
-        <ReactSortable className="flex flex-wrap gap-1" list={images} setList={updateImagesOrder}>
+        <ReactSortable
+          className="flex flex-wrap gap-2 p-5  border-blue-300 border-[20px] rounded-tr-3xl rounded-b-3xl bg-blue-100"
+          list={images}
+          setList={updateImagesOrder}
+        >
           {images?.length &&
             images.map((link) => (
               <div className="inline-block h-24" key={link}>

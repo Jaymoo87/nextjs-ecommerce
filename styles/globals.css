@@ -44,6 +44,10 @@ label {
   @apply bg-gray-200;
 }
 
+.btn-secondary {
+  @apply px-4 py-1 text-white rounded-md bg-cyan-600;
+}
+
 .btn-default,
 .btn-red {
   @apply px-4 py-1 rounded-md;
