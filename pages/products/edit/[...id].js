@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 
 import axios from 'axios';
 
-import Layout from '@/components/Layout';
-import ProductForm from '@/components/ProductForm';
+import Layout from '../../../components/Layout';
+import ProductForm from '../../../components/ProductForm';
 
 const EditProductPage = () => {
   const [productInfo, setProductInfo] = useState(null);

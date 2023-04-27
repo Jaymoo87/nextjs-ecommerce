@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import axios from 'axios';
 
-import Layout from '@/components/Layout';
+import Layout from '../components/Layout';
 
 const Products = () => {
   const [products, setProducts] = useState([]);

@@ -1,5 +1,5 @@
-import { MongooseConnect } from '@/lib/mongoose';
-import { Product } from '@/models/Product';
+import { MongooseConnect } from '../../lib/mongoose';
+import { Product } from '../../models/Product';
 
 export default async function handler(req, res) {
   const { method } = req;

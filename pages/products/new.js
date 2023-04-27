@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ProductForm from '@/components/ProductForm';
-import Layout from '@/components/Layout';
+import ProductForm from '../../components/ProductForm';
+import Layout from '../../components/Layout';
 
 const NewProduct = () => {
   return (

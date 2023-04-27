@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSession, signIn } from 'next-auth/react';
 
-import Nav from '@/components/Nav';
+import Nav from '../components/Nav';
 
 const Layout = ({ children }) => {
   const { data: session } = useSession();

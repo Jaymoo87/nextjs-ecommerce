@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import Layout from '@/components/Layout';
+import Layout from '../components/Layout';
 import axios from 'axios';
 
 const Categories = () => {
   const [name, setName] = useState('');
   const [categories, setCategories] = useState([]);
+  const [parentCategory, setParentCategory] = useState('');
 
   useEffect(() => {
     fetchCategories();
@@ -18,7 +19,7 @@ const Categories = () => {
   };
   const saveCategory = async (e) => {
     e.preventDefault();
-    await axios.post('/api/categories', { name });
+    await axios.post('/api/categories', { name, parentCategory });
     setName('');
     fetchCategories();
   };
@@ -35,6 +36,11 @@ const Categories = () => {
           type="text"
           placeholder={'Category name'}
         />
+
+        <select className="mb-0" value={parentCategory} onChange={(e) => setParentCategory(e.target.value)}>
+          <option value="0">No Parent Category</option>
+          {categories.length > 0 && categories.map((cat) => <option value={cat._id}>{cat.name}</option>)}
+        </select>
         <button type="submit" className="py-1 btn-primary">
           Save
         </button>
@@ -44,9 +50,18 @@ const Categories = () => {
         <thead>
           <tr>
             <td>Category Name</td>
+            <td>Parent Category</td>
           </tr>
         </thead>
-        <tbody>{categories.length > 0 && categories.map((cat) => <tr>{cat.name}</tr>)}</tbody>
+        <tbody>
+          {categories.length > 0 &&
+            categories.map((cat) => (
+              <tr>
+                <td>{cat.name}</td>
+                <td>{cat?.parent?.name}</td>
+              </tr>
+            ))}
+        </tbody>
       </table>
     </Layout>
   );
