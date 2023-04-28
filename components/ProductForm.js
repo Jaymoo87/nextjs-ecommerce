@@ -66,6 +66,17 @@ const ProductForm = ({
     setImages(images);
   };
 
+  const propertiesToFill = [];
+  if (categories.length > 0 && category) {
+    let catData = categories.find(({ _id }) => _id === category);
+    propertiesToFill.push(...catData.properties);
+    while (catData?.parent?._id) {
+      const parentCat = categories.find(({ _id }) => _id === catData?.parent?._id);
+      propertiesToFill.push(...parentCat.properties);
+      catData = parentCat;
+    }
+  }
+
   return (
     <form onSubmit={saveProduct}>
       <label>Product Name</label>
@@ -75,6 +86,12 @@ const ProductForm = ({
         <option value="">No Category</option>
         {categories.length > 0 && categories.map((cat) => <option value={cat._id}>{cat.name}</option>)}
       </select>
+      {propertiesToFill.length > 0 &&
+        propertiesToFill.map((p) => (
+          <div className="flex gap-1">
+            <div>{p.name}</div> : <div>{p.values}</div>
+          </div>
+        ))}
       <label>Photos</label>
       <div className="flex flex-wrap gap-2 mb-2 text-sm ">
         <ReactSortable

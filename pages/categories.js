@@ -172,6 +172,7 @@ const Categories = ({ swal }) => {
                 setEditedCategory(null);
                 setName('');
                 setParentCategory('');
+                setProperties([]);
               }}
               className="py-1 mt-2 btn-secondary "
             >
