@@ -12,12 +12,14 @@ const ProductForm = ({
   price: existingPrice,
   images: existingImages,
   category: existingCategory,
+  properties: assignedProperties,
 }) => {
   const router = useRouter();
 
   const [title, setTitle] = useState(existingTitle || '');
   const [description, setDescription] = useState(existingDescription || '');
   const [category, setCategory] = useState(existingCategory || '');
+  const [productProperties, setProductProperties] = useState(assignedProperties || {});
   const [price, setPrice] = useState(existingPrice || '');
   const [isUploading, setIsUploading] = useState(false);
   const [images, setImages] = useState(existingImages || []);
@@ -33,7 +35,7 @@ const ProductForm = ({
 
   const saveProduct = async (e) => {
     e.preventDefault();
-    const data = { title, description, price, images, category };
+    const data = { title, description, price, images, category, properties: productProperties };
     if (_id) {
       await axios.put('/api/products', { ...data, _id });
     } else {
@@ -77,6 +79,14 @@ const ProductForm = ({
     }
   }
 
+  const setProductProperty = (propName, value) => {
+    setProductProperties((prev) => {
+      const newProductProps = { ...prev };
+      newProductProps[propName] = value;
+      return newProductProps;
+    });
+  };
+
   return (
     <form onSubmit={saveProduct}>
       <label>Product Name</label>
@@ -89,7 +99,16 @@ const ProductForm = ({
       {propertiesToFill.length > 0 &&
         propertiesToFill.map((p) => (
           <div className="flex gap-1">
-            <div>{p.name}</div> : <div>{p.values}</div>
+            <div>{p.name}</div>
+            <select
+              value={productProperties[p.name]}
+              onChange={(e) => setProductProperty(p.name, e.target.value)}
+              type="text"
+            >
+              {p.values.map((v) => (
+                <option value={v}>{v}</option>
+              ))}
+            </select>
           </div>
         ))}
       <label>Photos</label>
