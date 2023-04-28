@@ -2,10 +2,15 @@ import multiparty from 'multiparty';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import fs from 'fs';
 import mime from 'mime-types';
+import { MongooseConnect } from '../../lib/mongoose';
+import { authOptions, isAdminRequest } from './auth/[...nextauth]';
 
 const bucketName = 'jaymoo-next-ecommerce';
 
 export default async function handler(req, res) {
+  await MongooseConnect();
+  await isAdminRequest(req, res);
+
   const form = new multiparty.Form();
   const { fields, files } = await new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
