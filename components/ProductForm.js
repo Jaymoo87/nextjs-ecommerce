@@ -120,7 +120,7 @@ const ProductForm = ({
         >
           {images?.length &&
             images.map((link) => (
-              <div className="inline-block h-24" key={link}>
+              <div className="inline-block h-24 max-w-[200px] " key={link}>
                 <img src={link} alt="userPhoto" />
               </div>
             ))}
