@@ -40,15 +40,15 @@ label {
   @apply text-white bg-red-950;
 }
 
-.btn-default {
-  @apply bg-gray-200;
+.btn-delete {
+  @apply bg-red-400;
 }
 
 .btn-secondary {
   @apply px-4 py-1 text-white rounded-md bg-cyan-600;
 }
 
-.btn-default,
+.btn-delete,
 .btn-red {
   @apply px-4 py-1 rounded-md;
 }
