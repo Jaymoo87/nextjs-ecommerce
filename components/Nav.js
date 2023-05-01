@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Nav = ({ show }) => {
-  const inactiveLink = 'flex gap-1 p-1';
-  const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-xl ';
+  const inactiveLink = 'flex gap-1 p-1 text-headerText';
+  const activeLink = inactiveLink + ' bg-btnBG text-darkText rounded-xl ';
   const router = useRouter();
   const { pathname } = router;
 
@@ -19,7 +19,7 @@ const Nav = ({ show }) => {
     <aside
       className={
         (show ? '-left-0 mt-16 w-3/4' : ' -left-full') +
-        ' fixed md:w-auto h-full p-4 top-0 text-white bg-blue-900  transition-all duration-700 rounded-xl  '
+        ' fixed md:w-auto h-full p-4 top-0 text-headerText bg-headerBG  transition-all duration-700 rounded-xl  '
       }
     >
       <nav className="flex flex-col gap-2 p-1 ">

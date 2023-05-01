@@ -16,6 +16,7 @@ module.exports = {
         btnBG: '#FF7D00',
         darkText: '#001524',
         btnRED: '#C94435',
+        inputBorder: '#7BA3CC',
       },
     },
   },

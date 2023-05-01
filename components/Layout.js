@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
   }
   return (
     <>
-      <div className="min-h-screen bg-[#7BA3CC]">
+      <div className="min-h-screen bg-headerBG text-headerText">
         <div className="flex items-center p-4 ">
           <button onClick={toggleNav}>
             <svg
