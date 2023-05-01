@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="flex justify-between overflow-hidden font-bold text-blue-900 rounded-lg font-bolder">
+      <div className="flex justify-between overflow-hidden font-bold rounded-lg text-darkText font-bolder">
         <h2>Hello, {session?.user?.name}</h2>
         <div className="flex text-black bg-gray-200">
           <img src={session?.user?.image} className="w-8 h-8" />

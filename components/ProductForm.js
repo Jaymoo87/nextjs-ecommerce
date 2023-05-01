@@ -115,8 +115,13 @@ const ProductForm = ({
         ))}
       <label>Photos</label>
       <div className="flex flex-wrap gap-2 mb-2 text-sm ">
+        {isUploading && (
+          <div className="flex items-center h-24 p-1 rounded-lg">
+            <Spinner />
+          </div>
+        )}
         <ReactSortable
-          className="flex flex-wrap gap-2 p-5  border-blue-300 border-[20px] rounded-tr-3xl rounded-b-3xl bg-blue-100"
+          className="flex flex-wrap gap-2 p-5  border-headerBG border-[20px] rounded-tr-3xl rounded-b-3xl bg-headerText"
           list={images}
           setList={updateImagesOrder}
         >
@@ -127,13 +132,8 @@ const ProductForm = ({
               </div>
             ))}
         </ReactSortable>
-        {isUploading && (
-          <div className="flex items-center h-24 p-1 text-blue-900 rounded-lg">
-            <Spinner />
-          </div>
-        )}
 
-        <label className="flex flex-col items-center justify-center mt-8 text-blue-900 bg-blue-100 border border-blue-900 rounded-b-lg shadow-lg w-28 h-28">
+        <label className="flex flex-col items-center justify-center mt-8 border border-blue-900 rounded-b-lg shadow-lg bg-headerBG text-darkText w-28 h-28">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

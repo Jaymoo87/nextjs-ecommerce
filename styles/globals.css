@@ -40,21 +40,17 @@ label {
   @apply text-white bg-btnRED;
 }
 
-.btn-delete {
-  @apply bg-red-400;
-}
-
 .btn-secondary {
   @apply px-4 py-1 font-semibold rounded-md text-headerText bg-headerBG;
 }
 
 .btn-delete,
 .btn-red {
-  @apply px-4 py-1 bg-red-500 rounded-md;
+  @apply px-4 py-1 rounded-md bg-btnRED;
 }
 
 table.basic {
-  @apply w-full mb-5 rounded-md shadow-lg bg-tableBG;
+  @apply w-full mb-5 border-b-4 shadow-lg bg-tableBG border-headerBG;
 }
 
 table.basic thead tr td {
@@ -70,4 +66,21 @@ table.basic a {
 }
 td {
   @apply border-l-4 border-headerBG;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  position: relative;
+}
+
+td:after {
+  content: '';
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  width: 90%;
+  border-bottom: 1px solid black;
 }

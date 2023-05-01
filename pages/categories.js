@@ -62,13 +62,19 @@ const Categories = ({ swal }) => {
   const deleteCategory = (category) => {
     swal
       .fire({
-        title: 'Delete?',
+        titleText: 'Delete?',
         text: `Are you sure you want to delete this?`,
         showCancelButton: true,
         cancelButtonText: 'Cancel',
+        cancelButtonColor: '#FF7D00',
         confirmButtonText: 'Yes, Delete',
-        confirmButtonColor: '#d55',
+        confirmButtonColor: '#8B0000',
         reverseButtons: true,
+        background: '#FFECD1',
+        icon: 'warning',
+        iconColor: '#8B0000',
+        grow: true,
+        position: 'top',
       })
       .then(async (res) => {
         if (res.isConfirmed) {
@@ -189,16 +195,16 @@ const Categories = ({ swal }) => {
         <table className="mt-4 basic">
           <thead>
             <tr>
-              <td className="">| Category Name</td>
-              <td className="">| Parent Category</td>
-              <td className="">| Options</td>
+              <td>| Category Name</td>
+              <td>| Parent Category</td>
+              <td>| Options</td>
             </tr>
           </thead>
           <tbody>
             {categories.length > 0 &&
               categories.map((cat) => (
                 <tr key={cat._id}>
-                  <td>{cat.name}</td>
+                  <td className="borderPart">{cat.name}</td>
                   <td>{cat?.parent?.name}</td>
                   <td className="flex justify-between">
                     <button onClick={() => editCategory(cat)} className="btn-primary ">

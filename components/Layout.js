@@ -20,9 +20,9 @@ const Layout = ({ children }) => {
   if (!session) {
     return (
       <>
-        <div className="flex items-center w-screen h-screen bg-blue-900">
+        <div className="flex items-center w-screen h-screen bg-darkText">
           <div className="w-full text-center">
-            <button onClick={() => signIn('google')} className="p-2 px-4 bg-white rounded-full">
+            <button onClick={() => signIn('google')} className="p-2 px-4 rounded-full bg-btnBG">
               Log In with Google
             </button>
           </div>
@@ -50,9 +50,9 @@ const Layout = ({ children }) => {
             <Logo />
           </div>
         </div>
-        <div className="flex w-screen h-screen bg-mainBG">
+        <div className="flex w-screen h-screen bg-tableBG">
           <Nav show={showNav} />
-          <div className="flex-grow p-4 mt-4 mb-4 mr-4 rounded-lg bg-slate-200">{children}</div>
+          <div className="flex-grow p-4 mb-4 mr-4 rounded-lg bg-tableBG">{children}</div>
         </div>
       </div>
     </>
