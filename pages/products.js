@@ -21,9 +21,9 @@ const Products = () => {
       </Link>
       <table className="mt-2 basic">
         <thead>
-          <tr className="text-center ">
-            <td> Product Name</td>
-            <td>Options</td>
+          <tr>
+            <td>| Product Name</td>
+            <td>| Options</td>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +48,7 @@ const Products = () => {
                   </svg>
                   Edit
                 </Link>
+
                 <Link href={`/products/delete/${product._id}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

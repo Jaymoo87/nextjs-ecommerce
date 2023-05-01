@@ -98,17 +98,19 @@ const ProductForm = ({
       </select>
       {propertiesToFill.length > 0 &&
         propertiesToFill.map((p) => (
-          <div className="flex gap-1">
-            <div>{p.name}</div>
-            <select
-              value={productProperties[p.name]}
-              onChange={(e) => setProductProperty(p.name, e.target.value)}
-              type="text"
-            >
-              {p.values.map((v) => (
-                <option value={v}>{v}</option>
-              ))}
-            </select>
+          <div className="">
+            <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
+            <div>
+              <select
+                value={productProperties[p.name]}
+                onChange={(e) => setProductProperty(p.name, e.target.value)}
+                type="text"
+              >
+                {p.values.map((v) => (
+                  <option value={v}>{v}</option>
+                ))}
+              </select>
+            </div>
           </div>
         ))}
       <label>Photos</label>
@@ -130,7 +132,8 @@ const ProductForm = ({
             <Spinner />
           </div>
         )}
-        <label className="flex flex-col items-center justify-center w-24 h-24 text-gray-500 bg-gray-200 border border-blue-200 rounded-lg shadow-lg">
+
+        <label className="flex flex-col items-center justify-center mt-8 text-blue-900 bg-blue-100 border border-blue-900 rounded-b-lg shadow-lg w-28 h-28">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -145,7 +148,7 @@ const ProductForm = ({
               d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
             />
           </svg>
-          <div className="cursor-pointer"> Upload</div>
+          <div className="cursor-pointer"> Upload Image</div>
           <input type="file" className="hidden " onChange={uploadImage} />
         </label>
       </div>

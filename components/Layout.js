@@ -32,8 +32,8 @@ const Layout = ({ children }) => {
   }
   return (
     <>
-      <div className="min-h-screen bg-gray-300">
-        <div className="flex p-4 ">
+      <div className="min-h-screen bg-[#7BA3CC]">
+        <div className="flex items-center p-4 ">
           <button onClick={toggleNav}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +50,9 @@ const Layout = ({ children }) => {
             <Logo />
           </div>
         </div>
-        <div className="flex w-screen h-screen bg-blue-950">
+        <div className="flex w-screen h-screen bg-mainBG">
           <Nav show={showNav} />
-          <div className="flex-grow p-4 mt-4 mb-4 mr-4 bg-white rounded-lg">{children}</div>
+          <div className="flex-grow p-4 mt-4 mb-4 mr-4 rounded-lg bg-slate-200">{children}</div>
         </div>
       </div>
     </>

@@ -18,13 +18,11 @@ const Nav = ({ show }) => {
   return (
     <aside
       className={
-        show
-          ? 'hidden'
-          : '-left-full ' +
-            ' fixed md:w-auto h-full p-4 top-0 text-white bg-blue-900 md:static transition-all rounded-xl '
+        (show ? '-left-0 mt-16 w-3/4' : ' -left-full') +
+        ' fixed md:w-auto h-full p-4 top-0 text-white bg-blue-900  transition-all duration-700 rounded-xl  '
       }
     >
-      <nav className="flex flex-col gap-2 p-1">
+      <nav className="flex flex-col gap-2 p-1 ">
         <Link className={pathname === '/' ? activeLink : inactiveLink} href={'/'}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
             <path

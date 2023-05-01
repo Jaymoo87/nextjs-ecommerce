@@ -9,7 +9,13 @@ module.exports = {
     extend: {
       colors: {
         // classname: 'color'
-        primary: '#5542F6',
+        mainBG: '#001524',
+        tableBG: '#FFECD1',
+        headerBG: '#15616D',
+        headerText: '#EFEFEF',
+        btnBG: '#FF7D00',
+        darkText: '#001524',
+        btnRED: '#C94435',
       },
     },
   },

@@ -125,7 +125,7 @@ const Categories = ({ swal }) => {
           />
 
           <select className="mb-0" value={parentCategory} onChange={(e) => setParentCategory(e.target.value)}>
-            <option value="0">No Parent Category</option>
+            <option value="0">Select A Parent Category</option>
             {categories.length > 0 &&
               categories.map((cat) => (
                 <option key={cat._id} value={cat._id}>
@@ -135,7 +135,7 @@ const Categories = ({ swal }) => {
           </select>
         </div>
         <div className="mb-2">
-          <label className="block underline">Properties</label>
+          <label className="block mt-4">Properties</label>
           <button onClick={addProperty} type="button" className="mb-2 text-sm btn-secondary">
             Add Property
           </button>
@@ -189,9 +189,9 @@ const Categories = ({ swal }) => {
         <table className="mt-4 basic">
           <thead>
             <tr>
-              <td className="text-center">Category Name</td>
-              <td className="text-center">Parent Category</td>
-              <td className="text-center">Options</td>
+              <td className="">| Category Name</td>
+              <td className="">| Parent Category</td>
+              <td className="">| Options</td>
             </tr>
           </thead>
           <tbody>
@@ -200,11 +200,40 @@ const Categories = ({ swal }) => {
                 <tr key={cat._id}>
                   <td>{cat.name}</td>
                   <td>{cat?.parent?.name}</td>
-                  <td>
-                    <button onClick={() => editCategory(cat)} className="mr-1 btn-primary">
+                  <td className="flex justify-between">
+                    {' '}
+                    <button onClick={() => editCategory(cat)} className="btn-primary ">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-4 h-4 "
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                        />
+                      </svg>
                       Edit
                     </button>
-                    <button onClick={() => deleteCategory(cat)} className="btn-primary">
+                    <button onClick={() => deleteCategory(cat)} className="btn-red">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
                       Delete
                     </button>
                   </td>

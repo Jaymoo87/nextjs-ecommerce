@@ -26,18 +26,18 @@ select:focus {
 }
 
 h1 {
-  @apply mb-2 text-xl text-blue-900;
+  @apply mb-3 text-xl font-bold text-center uppercase text-darkText;
 }
 
 label {
-  @apply text-blue-900;
+  @apply text-sm font-bold text-darkText;
 }
 
 .btn-primary {
-  @apply px-4 py-1 text-white bg-blue-900 rounded-md;
+  @apply px-4 py-1 font-bold rounded-md text-darkText bg-btnBG;
 }
 .btn-red {
-  @apply text-white bg-red-950;
+  @apply text-white bg-btnRED;
 }
 
 .btn-delete {
@@ -50,21 +50,21 @@ label {
 
 .btn-delete,
 .btn-red {
-  @apply px-4 py-1 rounded-md;
+  @apply px-4 py-1 bg-red-500 rounded-md;
 }
 
 table.basic {
-  @apply w-full;
+  @apply w-full mb-5 rounded-md shadow-lg bg-tableBG;
 }
 
 table.basic thead tr td {
-  @apply bg-blue-100;
+  @apply py-3 text-sm font-bold uppercase border-b border-gray-700 rounded-t-md text-headerText bg-headerBG;
 }
 
-table.basic td {
-  @apply p-1 border border-blue-200;
+table.basic tr td {
+  @apply p-2;
 }
 
 table.basic a {
-  @apply inline-flex px-2 py-1 mr-2 text-sm text-white bg-blue-900 rounded-md;
+  @apply inline-flex px-2 py-1 mr-2 text-sm font-bold rounded-md text-darkText bg-btnBG;
 }
