@@ -16,10 +16,13 @@ const Products = () => {
 
   return (
     <Layout>
-      <Link href={'/products/new'} className="btn-primary ">
-        Add New Product
+      <h1 className="mb-4">Products</h1>
+
+      <Link href={'/products/new'} className=" btn-secondary">
+        + New Product
       </Link>
-      <table className="mt-2 basic">
+
+      <table className="mt-5 basic">
         <thead>
           <tr>
             <td>| Product Name</td>

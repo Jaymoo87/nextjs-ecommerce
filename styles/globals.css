@@ -50,7 +50,7 @@ label {
 }
 
 table.basic {
-  @apply w-full mb-5 border-b-4 shadow-lg bg-tableBG border-headerBG;
+  @apply w-full mb-5 border-b-8 shadow-lg bg-tableBG border-headerBG;
 }
 
 table.basic thead tr td {
@@ -65,7 +65,7 @@ table.basic a {
   @apply inline-flex px-2 py-1 mr-2 text-sm font-bold rounded-md text-darkText bg-btnBG;
 }
 td {
-  @apply border-l-4 border-headerBG;
+  @apply border-l-8 border-headerBG;
 }
 
 table {

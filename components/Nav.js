@@ -18,7 +18,7 @@ const Nav = ({ show }) => {
   return (
     <aside
       className={
-        (show ? '-left-0 mt-16 w-3/4' : ' -left-full') +
+        (show ? '-left-0 mt-16 w-3/4 z-10' : ' -left-full') +
         ' fixed md:w-auto h-full p-4 top-0 text-headerText bg-headerBG  transition-all duration-700 rounded-xl  '
       }
     >
