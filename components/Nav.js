@@ -4,38 +4,27 @@ import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const Nav = () => {
+const Nav = ({ show }) => {
   const inactiveLink = 'flex gap-1 p-1';
-  const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-l-xl';
+  const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-xl ';
   const router = useRouter();
   const { pathname } = router;
 
   const logout = async () => {
-    await router.push('/');
     await signOut();
+    await router.push('/');
   };
 
   return (
-    <aside className="p-4 pr-0 text-white">
-      <Link className="flex gap-1 mb-4 mr-2" href={'/'}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"
-          />
-        </svg>
-
-        <span>Ecommerce-admin</span>
-      </Link>
-      <nav className="flex flex-col gap-2">
+    <aside
+      className={
+        show
+          ? 'hidden'
+          : '-left-full ' +
+            ' fixed md:w-auto h-full p-4 top-0 text-white bg-blue-900 md:static transition-all rounded-xl '
+      }
+    >
+      <nav className="flex flex-col gap-2 p-1">
         <Link className={pathname === '/' ? activeLink : inactiveLink} href={'/'}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
             <path

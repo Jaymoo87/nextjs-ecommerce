@@ -1,9 +1,11 @@
 import { MongooseConnect } from '../../lib/mongoose';
 import { Product } from '../../models/Product';
+import { isAdminRequest } from './auth/[...nextauth]';
 
 export default async function handler(req, res) {
   const { method } = req;
   await MongooseConnect();
+  await isAdminRequest(req, res);
 
   if (method === 'GET') {
     if (req.query?.id) {
