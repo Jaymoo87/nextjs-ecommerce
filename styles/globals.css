@@ -37,7 +37,7 @@ label {
   @apply px-4 py-1 font-bold rounded-md text-darkText bg-btnBG;
 }
 .btn-red {
-  @apply text-white bg-btnRED;
+  @apply text-darkText bg-btnRED;
 }
 
 .btn-secondary {
@@ -62,7 +62,7 @@ table.basic tr td {
 }
 
 table.basic a {
-  @apply inline-flex px-2 py-1 mr-2 text-sm font-bold rounded-md text-darkText bg-btnBG;
+  @apply inline-flex px-2 py-1 mr-2 text-sm font-bold rounded-md;
 }
 td {
   @apply border-l-8 border-headerBG;

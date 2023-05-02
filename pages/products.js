@@ -34,7 +34,7 @@ const Products = () => {
             <tr key={product._id}>
               <td>{product.title}</td>
               <td className="flex justify-between">
-                <Link href={`/products/edit/${product._id}`}>
+                <Link className="bg-btnBG" href={`/products/edit/${product._id}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -52,7 +52,7 @@ const Products = () => {
                   Edit
                 </Link>
 
-                <Link href={`/products/delete/${product._id}`}>
+                <Link className="btn-red" href={`/products/delete/${product._id}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
