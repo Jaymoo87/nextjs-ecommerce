@@ -53,7 +53,8 @@ table.basic {
   @apply w-full mb-5 border-b-8 shadow-lg bg-tableBG border-headerBG;
 }
 
-table.basic thead tr td {
+table.basic thead tr td,
+table.basic thead tr th {
   @apply py-3 text-sm font-bold uppercase border-b text-headerText bg-headerBG;
 }
 
