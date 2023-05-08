@@ -28,7 +28,7 @@ const Orders = () => {
         <tbody>
           {order.length > 0 &&
             order.map((o) => (
-              <tr>
+              <tr key={`order-${o._id}`}>
                 <td>{new Date(o.createdAt).toLocaleString().replace(',', ' ')}</td>
                 <td>
                   {o.name} {o.email} <br />
@@ -37,15 +37,15 @@ const Orders = () => {
                   <br />
                   {o.postalCode}
                   <br />
-                  {o.streetAdress}
+                  {o.streetAddress}
                 </td>
                 <td>
                   {o.line_items.map((l) => (
-                    <>
+                    <div key={`line_item-${l.price_data.unit_amount}`}>
                       {l.price_data.product_data.name} <br />
                       {l.price_data.unit_amount / 100} x {l.quantity}
                       {/* {JSON.stringify(l)} */}
-                    </>
+                    </div>
                   ))}
                 </td>
               </tr>
