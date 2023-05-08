@@ -21,6 +21,7 @@ const Orders = () => {
         <thead>
           <tr>
             <th>Date</th>
+            <th>Paid</th>
             <th>Recipient</th>
             <th>Products</th>
           </tr>
@@ -30,6 +31,7 @@ const Orders = () => {
             order.map((o) => (
               <tr key={`order-${o._id}`}>
                 <td>{new Date(o.createdAt).toLocaleString().replace(',', ' ')}</td>
+                <td className={o.paid ? 'text-green-700' : 'text-red-700'}>{o.paid ? 'YES' : 'NO'}</td>
                 <td>
                   {o.name} {o.email} <br />
                   {o.city}
